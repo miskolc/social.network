@@ -1,8 +1,3 @@
-  # # RoR sample application
-
- This is the sample application :)
+  # # Social network in Ruby on Rails # #
 
 
- Another line with git
-
- aGAIN
