@@ -1,9 +1,26 @@
-<div class="center hero-unit">
+<% if user_signed_in? %>
+    <div class="row">
+        <aside class="span4">
+            <section>
+                <%= render 'shared/user_info' %>
+            </section>
+            <section>
+                <%= render 'shared/micropost_form' %>
+            </section>
+        </aside>
+        <div class="span8">
+            <h3>Status Updates Feed</h3>
+            <%= render 'shared/feed' %>
+        </div>
+    </div>
+<% else %>
+    <div class="center hero-unit">
 
-	<h1>Welcome to Fresone</h1>
-	<p>
-		We are a social network. 
-	</p>
+    	<h1>Welcome to Fresone</h1>
+    	<p>
+    		We are a social network. 
+    	</p>
 
-	<%= link_to "Sign up now!", new_user_registration_path, class: "btn btn-large btn-primary" %>
-</div>	
+    	<%= link_to "Sign up now!", new_user_registration_path, class: "btn btn-large btn-primary" %>
+    </div>	
+<% end %>

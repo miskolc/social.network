@@ -6,6 +6,8 @@ Fresone::Application.routes.draw do
 
   devise_for :users
   resources :users, :only => [:index, :show, :destroy]
+  resources :microposts, only: [:create, :destroy]
+
 
   root to: 'static_pages#home'
 

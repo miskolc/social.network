@@ -38,7 +38,7 @@ describe "Authentication" do
               visit root_path
             end  
 
-            it {should have_selector('title', text: user.name)}
+            it {should have_selector('h1', text: user.name)}
             it {should have_link('Profile',     href: user_path(user))}
             it {should have_link('Sign out',    href: destroy_user_session_path)}
             it {should have_link('Settings',    href: edit_user_registration_path)}
@@ -53,6 +53,7 @@ describe "Authentication" do
     end 
 
     describe "authorization" do
+
         describe "for non-signed-in users" do
             let(:user) { FactoryGirl.create(:user) }
 
@@ -79,7 +80,7 @@ describe "Authentication" do
                         end  
 
                         it "should render the default (profile) page" do
-                            page.should have_selector('title', text: user.name)
+                            page.should have_selector('h1', text: user.name)
                         end  
                     end    
                 end     
@@ -93,13 +94,21 @@ describe "Authentication" do
                     it { should have_selector('div.alert.alert-error') }
                 end
 
-                describe "submitting to the update action" do
-                    before { put registration_path(User) }
-                    specify { response.should redirect_to(new_user_session_path)}
-                end 
-
             end
         end 
+
+        describe "In the Microposts controller" do
+            describe "submitting to the create action" do
+                before { post microposts_path }
+                specify { response.should redirect_to(new_user_session_path) }
+            end
+
+            describe "submitting to the destroy action" do
+                before { delete micropost_path(FactoryGirl.create(:micropost)) }
+                #Nu ar trebui sa aiba si :user si :content dupa?
+                specify { response.should redirect_to(new_user_session_path) }
+            end    
+        end    
 
         describe "as non-admin user" do
             let(:user) { FactoryGirl.create(:user) }

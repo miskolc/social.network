@@ -9,6 +9,12 @@ class User < ActiveRecord::Base
   attr_accessible :name, :email, :password, :password_confirmation, :remember_me
   # attr_accessible :title, :body
 
+  has_many :microposts, dependent: :destroy
+
   validates :name,  presence: true, length: { maximum: 50}
 
+  def feed
+    # This is only a protofeed
+    self.microposts
+  end  
 end
