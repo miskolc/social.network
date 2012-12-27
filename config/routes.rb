@@ -5,8 +5,13 @@ Fresone::Application.routes.draw do
   get "users/show"
 
   devise_for :users
-  resources :users, :only => [:index, :show, :destroy]
+  resources :users, :only => [:index, :show, :destroy] do
+    member do
+      get :following, :followers
+    end 
+  end  
   resources :microposts, only: [:create, :destroy]
+  resources :relationships, only: [:create, :destroy]
 
 
   root to: 'static_pages#home'
