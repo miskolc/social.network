@@ -103,6 +103,12 @@ describe "Authentication" do
                     before { visit followers_user_path(user) }
                     it { should have_selector('title', text: 'Sign in') }
                 end    
+
+                describe "visiting the user profile page" do
+                    before { visit user_path(user) }
+                    it { should_not have_selector('input', value: 'Unfollow')}
+                    it { should_not have_selector('input', value: 'Follow')}
+                end    
             end
         end 
 

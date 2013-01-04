@@ -69,6 +69,7 @@ describe "UserPages" do
         it {should have_selector('h1', text: user.name) }
         it {should have_selector('title', text: user.name) }
 
+
         describe "microposts" do
             it { should have_content(m1.content) }
             it { should have_content(m2.content) }
@@ -81,6 +82,8 @@ describe "UserPages" do
 
             describe "following a user" do
                 before { visit user_path(other_user) }
+
+                it { should have_selector('input', value: 'Follow')}
 
                 it "should increment the followed user count" do
                     expect do
@@ -107,6 +110,8 @@ describe "UserPages" do
                     visit user_path(other_user)
                 end
                 
+                it { should have_selector('input', value: 'Unfollow')}
+
                 it "should decrement the followed user count" do
                     expect do
                         click_button "Unfollow"
