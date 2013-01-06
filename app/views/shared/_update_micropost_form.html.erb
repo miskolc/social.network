@@ -1,0 +1,8 @@
+<%= form_for(@micropost,display: "none", html: { class: "update" } ,remote: true) do |f| %>
+    <%= render 'shared/error_messages', object: @micropost %>
+
+    <div class="field">
+        <%= f.text_area :content, placeholder: "Edit you status..." %>
+    </div>
+    <%= f.submit "Update", class: "btn btn-large btn-primary" %>
+<% end %>

@@ -1,0 +1,2 @@
+$('li#<%= @micropost.id %>').after('<%= j render :partial => "shared/feed_item", :locals => { :feed_item => @micropost } %>');
+$('li#<%= @micropost.id %>').remove();
