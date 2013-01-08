@@ -1,11 +1,11 @@
-    if ($('li#<%= @micropost.id %> .update').length == 0) 
+    if ($('li#<%= @micropost.id %> .update_micropost_form').length == 0) 
     {
         $('li#<%= @micropost.id %>').append('<%= j render "shared/update_micropost_form" %>');
     }
     else 
     { 
         condition = false;
-        $('li#<%= @micropost.id %> .update').remove();
+        $('li#<%= @micropost.id %> .update_micropost_form').remove();
     }
 
 

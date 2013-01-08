@@ -266,3 +266,11 @@ aside {
     margin-bottom: 5px;
   }
 }
+.micropost_text_content{
+      overflow: hidden;
+      a {
+        font-weight: bold;
+        font-size: 1.1em;
+        line-height: 1.7em;
+      }
+}
